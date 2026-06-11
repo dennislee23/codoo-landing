@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Quick Update — Roland landing</title>
+<style>body{font-family:system-ui;max-width:520px;margin:60px auto;padding:24px;color:#1a1a1a}
+h1{font-weight:600}input,button{font:inherit;padding:12px;border-radius:6px;border:1px solid #ccc}
+input{width:100%;margin-bottom:10px}.modes{display:flex;gap:8px;margin-bottom:10px}
+.modes button{flex:1;background:#faf7f2;cursor:pointer}.modes button.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.go{background:#1E5B55;color:#fff;border:none;cursor:pointer;padding:13px 24px;width:100%;font-weight:600}
+#out{white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:12px;
+background:#faf7f2;border:1px solid #eee;padding:12px;margin-top:14px;max-height:340px;overflow:auto;display:none}</style>
+</head><body>
+<h1>Quick Update</h1>
+<p>Pulls the latest site from the GitHub <code>main</code> branch into this folder.</p>
+<div class="modes">
+  <button class="active" data-mode="hard">Hard reset + pull</button>
+  <button data-mode="soft">Soft (stash) + pull</button>
+  <button data-mode="status">Status only</button>
+</div>
+<input type="password" id="key" placeholder="Deploy key" autocomplete="off">
+<button class="go" onclick="run()">Update Now</button>
+<pre id="out"></pre>
+<script>
+let mode='hard';
+document.querySelectorAll('.modes button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.modes button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); mode=b.dataset.mode;});
+async function run(){
+  const out=document.getElementById('out'); const key=document.getElementById('key').value.trim();
+  if(!key){out.style.display='block';out.textContent='Enter the deploy key';return;}
+  out.style.display='block'; out.textContent='Running '+mode+'…';
+  try{ const r=await fetch('deploy.php?key='+encodeURIComponent(key)+'&mode='+mode);
+    out.textContent=await r.text(); }catch(e){ out.textContent='Failed: '+e.message; }
+}
+</script></body></html>

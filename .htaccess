@@ -1,0 +1,16 @@
+# Block the secret env file
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+# Hide operator page from search engines
+<Files "update.html">
+    Header always set X-Robots-Tag "noindex, nofollow"
+</Files>
+# Short cache for HTML so updates appear fast; long cache for hashed assets
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "max-age=300, must-revalidate"
+  </FilesMatch>
+</IfModule>
+# Block the .git directory from the web
+RedirectMatch 404 /\.git
