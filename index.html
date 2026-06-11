@@ -32,7 +32,8 @@
   header.scrolled{border-color:var(--line)}
   .nav{display:flex; align-items:center; justify-content:space-between; height:54px}
   .brand{display:flex; align-items:center; gap:9px; font-family:"Bricolage Grotesque"; font-weight:600; font-size:19px; letter-spacing:-.02em}
-  .brand .glyph{width:26px; height:26px; border-radius:8px; background:var(--ink); color:#fff; display:grid; place-items:center; font-size:15px; font-weight:700}
+  .brand .glyph{width:27px; height:27px; display:block; line-height:0}
+  .brand .glyph svg{width:100%; height:100%; display:block}
   .brand small{font-family:"Hanken Grotesk"; font-weight:500; font-size:12px; color:var(--grey); letter-spacing:0}
   .nav-links{display:flex; gap:28px; align-items:center; font-size:14.5px; color:var(--ink-2)}
   .nav-links a:not(.pill){color:var(--ink-2); opacity:.8} .nav-links a:hover{opacity:1}
@@ -161,7 +162,7 @@
 
 <header id="hdr">
   <div class="wrap nav">
-    <a class="brand" href="#top"><span class="glyph">C</span>Codoo <small>by KittyKat</small></a>
+    <a class="brand" href="#top"><span class="glyph"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none"><defs><linearGradient id="cg" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#0a84ff"/><stop offset="1" stop-color="#25d366"/></linearGradient></defs><rect width="32" height="32" rx="8.5" fill="url(#cg)"/><path d="M20.6 10.4 A7 7 0 1 0 20.6 21.6" stroke="#fff" stroke-width="3.1" stroke-linecap="round"/><path d="M23 8 L23.95 10.45 L26.4 11.4 L23.95 12.35 L23 14.8 L22.05 12.35 L19.6 11.4 L22.05 10.45 Z" fill="#fff"/></svg></span>Codoo <small>by KittyKat</small></a>
     <nav class="nav-links">
       <a href="#journey">What it does</a>
       <a href="#engine">Built in-house</a>
@@ -384,7 +385,7 @@
 
 <footer>
   <div class="wrap foot">
-    <div class="brand"><span class="glyph">C</span>Codoo <small>by KittyKat</small></div>
+    <div class="brand"><span class="glyph"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none"><defs><linearGradient id="cg" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#0a84ff"/><stop offset="1" stop-color="#25d366"/></linearGradient></defs><rect width="32" height="32" rx="8.5" fill="url(#cg)"/><path d="M20.6 10.4 A7 7 0 1 0 20.6 21.6" stroke="#fff" stroke-width="3.1" stroke-linecap="round"/><path d="M23 8 L23.95 10.45 L26.4 11.4 L23.95 12.35 L23 14.8 L22.05 12.35 L19.6 11.4 L22.05 10.45 Z" fill="#fff"/></svg></span>Codoo <small>by KittyKat</small></div>
     <div>A KittyKat product · <a href="mailto:hello@kittykat.tech">hello@kittykat.tech</a></div>
     <div>© 2026 KittyKat</div>
   </div>
