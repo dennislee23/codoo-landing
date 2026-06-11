@@ -10,7 +10,7 @@
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
     --bg:#ffffff; --bg-2:#f5f5f7; --ink:#0a0a0a; --ink-2:#1d1d1f; --grey:#6e6e73; --line:#e4e4e7;
@@ -218,6 +218,10 @@
   .lang[data-lang]{cursor:pointer; transition:color .2s, background .2s}
   .lang[data-lang]:hover{color:var(--ink)}
   .lang[data-lang].on{background:var(--ink); color:#fff}
+
+  /* Cyrillic: Bricolage/Hanken lack Cyrillic — use Onest for Russian only */
+  html[lang="ru"] body{font-family:"Onest",-apple-system,system-ui,sans-serif}
+  html[lang="ru"] h1,html[lang="ru"] h2,html[lang="ru"] h3{font-family:"Onest",sans-serif; letter-spacing:-.02em}
 </style>
 </head>
 <body>
@@ -229,7 +233,7 @@
       <a href="#journey" data-i18n="nav.what">What it does</a>
       <a href="#engine" data-i18n="nav.inhouse">Built in-house</a>
       <a href="#case" data-i18n="nav.case">Live case</a>
-      <label class="langsel" aria-label="Language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg><select id="langSelect"><option value="en">English</option><option value="de">Deutsch</option><option value="ru">Русский</option><option value="fr">Français</option><option value="et">Eesti</option></select></label>
+      <label class="langsel" aria-label="Language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg><select id="langSelect"><option value="en">English</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="et">Eesti</option><option value="ru">Русский</option></select></label>
       <a class="pill js-ask" href="#" id="askNav" data-i18n="nav.ask">Ask Codoo</a>
     </nav>
   </div>
@@ -460,7 +464,7 @@
         <a class="btn btn-ghost" href="mailto:hello@kittykat.tech?subject=Codoo%20for%20my%20apartments" data-i18n="cta.email">Email us</a>
       </div>
       <div class="langbar reveal" style="transition-delay:.1s">
-        <span class="lang" data-lang="en">🇬🇧 English</span><span class="lang" data-lang="de">🇩🇪 Deutsch</span><span class="lang" data-lang="ru">🇷🇺 Русский</span><span class="lang" data-lang="fr">🇫🇷 Français</span><span class="lang" data-lang="et">🇪🇪 Eesti</span><span class="lang" data-i18n="fin.more">🌐 + 45 more (guests)</span>
+        <span class="lang" data-lang="en">🇬🇧 English</span><span class="lang" data-lang="de">🇩🇪 Deutsch</span><span class="lang" data-lang="fr">🇫🇷 Français</span><span class="lang" data-lang="et">🇪🇪 Eesti</span><span class="lang" data-lang="ru">🇷🇺 Русский</span><span class="lang" data-i18n="fin.more">🌐 + 45 more (guests)</span>
       </div>
     </div>
   </section>
