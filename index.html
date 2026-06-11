@@ -199,7 +199,7 @@
       <a href="#journey">What it does</a>
       <a href="#engine">Built in-house</a>
       <a href="#case">Live case</a>
-      <a class="pill" href="#" id="askNav">Ask Codoo</a>
+      <a class="pill js-ask" href="#" id="askNav">Ask Codoo</a>
     </nav>
   </div>
 </header>
@@ -212,7 +212,7 @@
       <h1 class="reveal in">Your guest assistant, <span class="grad">from booking to checkout.</span></h1>
       <p class="lead reveal in" style="transition-delay:.08s">Codoo works on top of Booking.com, Airbnb and your direct bookings. From the moment a guest books, it handles the conversation on WhatsApp — check-in, Wi-Fi, parking, checkout — in their language, and brings you in only when something needs a person.</p>
       <div class="cta-row reveal in" style="transition-delay:.14s">
-        <a class="btn btn-primary" href="https://wa.me/37253829955?text=Hi%2C%20I%27d%20like%20a%20Codoo%20demo" target="_blank" rel="noopener">Try it on WhatsApp →</a>
+        <a class="btn btn-primary js-ask" href="#">Try the assistant →</a>
         <a class="btn btn-ghost" href="#journey">See what it does</a>
       </div>
       <div class="hero-note reveal in" style="transition-delay:.2s">Running across an apartment portfolio in Tallinn.</div>
@@ -405,7 +405,7 @@
       <div class="eyebrow reveal">Get Codoo</div>
       <h2 class="reveal" style="margin-top:16px">Add Codoo to your apartments.</h2>
       <div class="cta-row reveal" style="margin-top:30px">
-        <a class="btn btn-primary" href="https://wa.me/37253829955?text=Hi%2C%20I%27d%20like%20Codoo%20for%20my%20apartments" target="_blank" rel="noopener">Talk to Codoo on WhatsApp →</a>
+        <a class="btn btn-primary js-ask" href="#">Ask Codoo →</a>
         <a class="btn btn-ghost" href="mailto:hello@kittykat.tech?subject=Codoo%20for%20my%20apartments">Email us</a>
       </div>
       <div class="langbar reveal" style="transition-delay:.1s">
@@ -473,10 +473,10 @@
       try{ const r=await fetch('/ask.php',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({message:q,history:history.slice(-8)})});
         const d=await r.json(); typing(false); const reply=(d&&d.reply)||"Sorry, something went wrong — try again, or message us on WhatsApp.";
         addMsg(reply,'bot'); history.push({role:'user',content:q},{role:'assistant',content:reply});
-      }catch(e){ typing(false); addMsg("Sorry, I couldn't reach the assistant. You can message us on WhatsApp at +372 5382 9955.",'bot'); }
+      }catch(e){ typing(false); addMsg("Sorry, I couldn't reach the assistant right now. You can email us at hello@kittykat.tech.",'bot'); }
       busy=false; send.disabled=false; text.focus(); }
     function submit(){ const q=text.value; text.value=''; text.style.height='auto'; ask(q); }
-    document.getElementById('askNav').onclick=(e)=>{ e.preventDefault(); open(); };
+    document.querySelectorAll('.js-ask').forEach(el=>el.addEventListener('click',(e)=>{ e.preventDefault(); open(); }));
     document.getElementById('askClose').onclick=close;
     send.onclick=submit;
     text.addEventListener('keydown',(e)=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submit(); } });

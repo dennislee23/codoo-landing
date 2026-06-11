@@ -41,10 +41,10 @@ LIVE PROOF
 Codoo is running today across a 30+ apartment operation in Tallinn — on its own WhatsApp line, 24/7, replying in any language the guest writes in.
 
 PRICING
-Pricing is tailored to the operator's size and needs. Don't invent numbers. For a quote, invite them to message on WhatsApp (+372 5382 9955) or email hello@kittykat.tech.
+Pricing is tailored to the operator's size and needs. Don't invent numbers. For a quote, invite them to email hello@kittykat.tech.
 
 NEXT STEPS
-They can try the live assistant on WhatsApp, or contact the team (WhatsApp +372 5382 9955 / hello@kittykat.tech) for a demo tailored to their apartments.
+You are the live demo — they are talking to Codoo right now. For a setup tailored to their apartments, invite them to email the team at hello@kittykat.tech. Do not give out any phone or WhatsApp number.
 
 BOUNDARIES
 Answer about Codoo, short-stay hosting and how Codoo could help the visitor. If asked something unrelated, gently steer back. If you don't know, say so and offer to connect them with the team. Never invent features, integrations, customers or prices. Never use markdown.
@@ -85,7 +85,7 @@ if (is_file(__DIR__ . '/.env')) {
         if (str_starts_with($l, 'ANTHROPIC_API_KEY=')) { $apiKey = trim(substr($l, 18)); break; }
     }
 }
-if ($apiKey === '') { http_response_code(500); echo json_encode(['reply' => "The assistant isn't fully set up yet. Please message us on WhatsApp at +372 5382 9955."]); exit; }
+if ($apiKey === '') { http_response_code(500); echo json_encode(['reply' => "The assistant isn't fully set up yet. Please email us at hello@kittykat.tech."]); exit; }
 
 // build messages
 $messages = [];
@@ -123,7 +123,7 @@ curl_close($ch);
 
 if ($resp === false || $code >= 400) {
     http_response_code(502);
-    echo json_encode(['reply' => "Sorry, I couldn't reach the assistant just now. You can always message us on WhatsApp at +372 5382 9955."]);
+    echo json_encode(['reply' => "Sorry, I couldn't reach the assistant just now. You can always email us at hello@kittykat.tech."]);
     exit;
 }
 $data = json_decode((string)$resp, true);
