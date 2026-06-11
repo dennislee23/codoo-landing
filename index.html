@@ -157,11 +157,11 @@
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1; transform:none}
 
-  /* Ask Codoo — centered modal */
-  .ask-overlay{position:fixed; inset:0; z-index:90; background:rgba(10,10,12,.42); backdrop-filter:blur(6px); display:none; align-items:flex-start; justify-content:center; padding:9vh 20px 20px}
-  .ask-overlay.open{display:flex}
-  .ask-modal{width:min(640px,100%); max-height:82vh; background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 40px 90px -24px rgba(0,0,0,.5); display:flex; flex-direction:column; overflow:hidden; animation:askin .22s cubic-bezier(.2,.7,.2,1)}
-  @keyframes askin{from{opacity:0; transform:translateY(-10px) scale(.99)} to{opacity:1; transform:none}}
+  /* Ask Codoo — right side panel (non-blocking) */
+  .ask-overlay{position:fixed; top:0; right:0; bottom:0; z-index:90; width:min(420px,100%); display:none; pointer-events:none}
+  .ask-overlay.open{display:block}
+  .ask-modal{position:absolute; inset:0; background:#fff; border-left:1px solid var(--line); box-shadow:-26px 0 70px -28px rgba(0,0,0,.3); display:flex; flex-direction:column; overflow:hidden; pointer-events:auto; animation:askin .26s cubic-bezier(.2,.7,.2,1)}
+  @keyframes askin{from{transform:translateX(100%)} to{transform:none}}
   .ask-modal .mhead{display:flex; align-items:center; gap:10px; padding:13px 16px; border-bottom:1px solid var(--line)}
   .ask-modal .mhead .lg{width:26px; height:26px; flex:0 0 auto; line-height:0}
   .ask-modal .mhead .lg svg{width:100%; height:100%; display:block}
@@ -187,7 +187,7 @@
   .ask-foot textarea:focus{border-color:var(--accent)}
   .ask-foot button{border:none; background:var(--accent); color:#fff; border-radius:12px; width:46px; cursor:pointer; font-size:18px; flex:0 0 auto}
   .ask-foot button:disabled{opacity:.45; cursor:default}
-  @media(max-width:520px){ .ask-overlay{padding:0} .ask-modal{max-height:100vh; height:100vh; border-radius:0; border:none} }
+  @media(max-width:520px){ .ask-overlay{width:100%} .ask-modal{border-left:none} }
 </style>
 </head>
 <body>
@@ -463,8 +463,8 @@
           empty=document.getElementById('askEmpty'), msgs=document.getElementById('askMsgs'), body=document.getElementById('askBody'),
           text=document.getElementById('askText'), send=document.getElementById('askSend'), chips=document.getElementById('askChips');
     let history=[], busy=false;
-    function open(){ overlay.classList.add('open'); document.body.style.overflow='hidden'; setTimeout(()=>text.focus(),60); }
-    function close(){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+    function open(){ overlay.classList.add('open'); setTimeout(()=>text.focus(),60); }
+    function close(){ overlay.classList.remove('open'); }
     function toggle(){ overlay.classList.contains('open')?close():open(); }
     function addMsg(t,who){ if(empty) empty.style.display='none'; const d=document.createElement('div'); d.className='amsg '+who; d.textContent=t; msgs.appendChild(d); body.scrollTop=body.scrollHeight; }
     function typing(on){ let e=document.getElementById('atyp'); if(on){ if(e)return; e=document.createElement('div'); e.className='atyping'; e.id='atyp'; e.innerHTML='<i></i><i></i><i></i>'; msgs.appendChild(e); body.scrollTop=body.scrollHeight; } else if(e){ e.remove(); } }
@@ -478,7 +478,6 @@
     function submit(){ const q=text.value; text.value=''; text.style.height='auto'; ask(q); }
     document.getElementById('askNav').onclick=(e)=>{ e.preventDefault(); open(); };
     document.getElementById('askClose').onclick=close;
-    overlay.addEventListener('mousedown',(e)=>{ if(e.target===overlay) close(); });
     send.onclick=submit;
     text.addEventListener('keydown',(e)=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submit(); } });
     text.addEventListener('input',()=>{ text.style.height='auto'; text.style.height=Math.min(text.scrollHeight,120)+'px'; });
