@@ -156,6 +156,34 @@
 
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1; transform:none}
+
+  /* Ask Codoo widget */
+  .ask-launch{position:fixed; right:22px; bottom:22px; z-index:80; display:inline-flex; align-items:center; gap:9px; background:var(--ink); color:#fff; border:none; cursor:pointer; padding:11px 18px 11px 13px; border-radius:100px; font:600 15px "Hanken Grotesk"; box-shadow:0 14px 32px -8px rgba(0,0,0,.45); transition:transform .2s}
+  .ask-launch:hover{transform:translateY(-2px)}
+  .ask-launch .lg{width:24px; height:24px; display:block}
+  .ask-panel{position:fixed; right:22px; bottom:22px; z-index:90; width:min(384px,calc(100vw - 32px)); height:min(564px,calc(100vh - 44px)); background:#fff; border:1px solid var(--line); border-radius:22px; box-shadow:0 34px 80px -22px rgba(0,0,0,.45); display:none; flex-direction:column; overflow:hidden}
+  .ask-panel.open{display:flex}
+  .ask-head{display:flex; align-items:center; gap:10px; padding:13px 14px; border-bottom:1px solid var(--line)}
+  .ask-head .lg{width:30px; height:30px; flex:0 0 auto}
+  .ask-head .ti{font-family:"Bricolage Grotesque"; font-weight:600; font-size:16px; line-height:1.15}
+  .ask-head .ti small{display:block; font-family:"Hanken Grotesk"; font-weight:500; font-size:11px; color:var(--grey)}
+  .ask-head .x{margin-left:auto; background:none; border:none; cursor:pointer; color:var(--grey); font-size:22px; line-height:1; padding:2px 6px}
+  .ask-msgs{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; background:var(--bg-2)}
+  .amsg{max-width:86%; padding:10px 13px; border-radius:14px; font-size:14.5px; line-height:1.45; white-space:pre-wrap; word-wrap:break-word}
+  .amsg.bot{background:#fff; border:1px solid var(--line); align-self:flex-start; border-top-left-radius:4px}
+  .amsg.me{background:var(--accent); color:#fff; align-self:flex-end; border-top-right-radius:4px}
+  .atyping{align-self:flex-start; background:#fff; border:1px solid var(--line); border-radius:14px; padding:11px 14px; display:flex; gap:4px}
+  .atyping i{width:6px; height:6px; border-radius:50%; background:#bbb; animation:blink 1.2s infinite}
+  .atyping i:nth-child(2){animation-delay:.2s} .atyping i:nth-child(3){animation-delay:.4s}
+  .achips{display:flex; flex-wrap:wrap; gap:7px; padding:0 14px 10px; background:var(--bg-2)}
+  .achip{font-size:13px; background:#fff; border:1px solid var(--line); border-radius:100px; padding:6px 12px; cursor:pointer; color:var(--ink-2)}
+  .achip:hover{border-color:var(--accent); color:var(--accent)}
+  .ask-input{display:flex; gap:8px; padding:11px; border-top:1px solid var(--line); background:#fff}
+  .ask-input textarea{flex:1; resize:none; border:1px solid var(--line); border-radius:12px; padding:10px 12px; font:400 14.5px "Hanken Grotesk"; max-height:96px; outline:none}
+  .ask-input textarea:focus{border-color:var(--accent)}
+  .ask-input button{border:none; background:var(--accent); color:#fff; border-radius:12px; width:42px; cursor:pointer; font-size:18px; flex:0 0 auto}
+  .ask-input button:disabled{opacity:.45; cursor:default}
+  @media(max-width:520px){ .ask-panel{right:8px; bottom:8px; height:calc(100vh - 16px); width:calc(100vw - 16px)} .ask-launch{right:12px; bottom:12px} }
 </style>
 </head>
 <body>
@@ -167,7 +195,7 @@
       <a href="#journey">What it does</a>
       <a href="#engine">Built in-house</a>
       <a href="#case">Live case</a>
-      <a class="pill" href="https://wa.me/37253829955?text=Hi%2C%20I%27d%20like%20a%20Codoo%20demo" target="_blank" rel="noopener">See it live</a>
+      <a class="pill" href="#" id="askNav">Ask Codoo</a>
     </nav>
   </div>
 </header>
@@ -391,11 +419,62 @@
   </div>
 </footer>
 
+<!-- Ask Codoo widget -->
+<button class="ask-launch" id="askLaunch" aria-label="Ask Codoo">
+  <span class="lg"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#0a84ff"/><stop offset="1" stop-color="#25d366"/></linearGradient></defs><rect width="32" height="32" rx="8.5" fill="url(#cg)"/><path d="M20.6 10.4 A7 7 0 1 0 20.6 21.6" stroke="#fff" stroke-width="3.1" stroke-linecap="round"/><path d="M23 8 L23.95 10.45 L26.4 11.4 L23.95 12.35 L23 14.8 L22.05 12.35 L19.6 11.4 L22.05 10.45 Z" fill="#fff"/></svg></span> Ask Codoo
+</button>
+<div class="ask-panel" id="askPanel" role="dialog" aria-label="Ask Codoo">
+  <div class="ask-head">
+    <span class="lg"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8.5" fill="url(#cg)"/><path d="M20.6 10.4 A7 7 0 1 0 20.6 21.6" stroke="#fff" stroke-width="3.1" stroke-linecap="round"/><path d="M23 8 L23.95 10.45 L26.4 11.4 L23.95 12.35 L23 14.8 L22.05 12.35 L19.6 11.4 L22.05 10.45 Z" fill="#fff"/></svg></span>
+    <div class="ti">Codoo<small>Ask me anything about it</small></div>
+    <button class="x" id="askClose" aria-label="Close">&times;</button>
+  </div>
+  <div class="ask-msgs" id="askMsgs"></div>
+  <div class="achips" id="askChips">
+    <button class="achip">How does it work?</button>
+    <button class="achip">Which booking channels?</button>
+    <button class="achip">What does it cost?</button>
+  </div>
+  <div class="ask-input">
+    <textarea id="askText" rows="1" placeholder="Ask about Codoo…"></textarea>
+    <button id="askSend" aria-label="Send">↑</button>
+  </div>
+</div>
+
 <script>
   const hdr=document.getElementById('hdr');
   addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>8));
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+  // Ask Codoo widget
+  (function(){
+    const panel=document.getElementById('askPanel'), msgs=document.getElementById('askMsgs'),
+          text=document.getElementById('askText'), send=document.getElementById('askSend'),
+          chips=document.getElementById('askChips'), launch=document.getElementById('askLaunch');
+    let history=[], greeted=false, busy=false;
+    function open(){ panel.classList.add('open'); launch.style.display='none';
+      if(!greeted){ greeted=true; addBot("Hi! I'm Codoo's assistant. Ask me anything — how it works, the channels it supports, or what it'd take to set up for your apartments."); }
+      setTimeout(()=>text.focus(),60); }
+    function close(){ panel.classList.remove('open'); launch.style.display=''; }
+    function addBot(t){ const d=document.createElement('div'); d.className='amsg bot'; d.textContent=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; }
+    function addMe(t){ const d=document.createElement('div'); d.className='amsg me'; d.textContent=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; }
+    function typing(on){ let e=document.getElementById('atyp'); if(on){ if(e)return; e=document.createElement('div'); e.className='atyping'; e.id='atyp'; e.innerHTML='<i></i><i></i><i></i>'; msgs.appendChild(e); msgs.scrollTop=msgs.scrollHeight; } else if(e){ e.remove(); } }
+    async function ask(q){ q=(q||'').trim(); if(busy||!q) return; busy=true; send.disabled=true; if(chips) chips.style.display='none';
+      addMe(q); typing(true);
+      try{ const r=await fetch('/ask.php',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({message:q,history:history.slice(-8)})});
+        const d=await r.json(); typing(false); const reply=(d&&d.reply)||"Sorry, something went wrong — try again, or message us on WhatsApp.";
+        addBot(reply); history.push({role:'user',content:q},{role:'assistant',content:reply});
+      }catch(e){ typing(false); addBot("Sorry, I couldn't reach the assistant. You can message us on WhatsApp at +372 5382 9955."); }
+      busy=false; send.disabled=false; text.focus(); }
+    function submit(){ const q=text.value; text.value=''; text.style.height='auto'; ask(q); }
+    launch.onclick=open; document.getElementById('askClose').onclick=close;
+    document.getElementById('askNav').onclick=(e)=>{ e.preventDefault(); open(); };
+    send.onclick=submit;
+    text.addEventListener('keydown',(e)=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submit(); } });
+    text.addEventListener('input',()=>{ text.style.height='auto'; text.style.height=Math.min(text.scrollHeight,96)+'px'; });
+    if(chips) chips.querySelectorAll('.achip').forEach(c=>c.onclick=()=>ask(c.textContent));
+  })();
 </script>
 </body>
 </html>
