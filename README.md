@@ -1,4 +1,4 @@
-# Codoo — product landing (booking.kittykat.tech)
+# Codoo — product landing (codoo.kittykat.tech)
 
 Static landing for **Codoo** — an AI WhatsApp guest assistant for short-stay
 rental operators (the productized version of the Roland bot, for selling to
@@ -31,7 +31,7 @@ corner chat bubble.
   is a git clone of this repo. SSH `virt105026@kittykat.tech` (key `~/.ssh/id_ed25519`).
 - `.env` on the server holds `DEPLOY_KEY` and `ANTHROPIC_API_KEY` (same key as the
   kittykat.tech advisor). **Never commit `.env`** (gitignored).
-- To deploy: `git push origin main`, then open `https://booking.kittykat.tech/update.html`,
+- To deploy: `git push origin main`, then open `https://codoo.kittykat.tech/update.html`,
   enter the deploy key, "Update Now".
 
 ## TODO

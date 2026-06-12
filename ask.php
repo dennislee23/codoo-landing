@@ -53,7 +53,7 @@ PROMPT;
 header('Content-Type: application/json; charset=utf-8');
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-$allowed = ['https://booking.kittykat.tech', 'https://www.booking.kittykat.tech'];
+$allowed = ['https://codoo.kittykat.tech', 'https://www.codoo.kittykat.tech'];
 if (in_array($origin, $allowed, true) || preg_match('#^http://(localhost|127\.0\.0\.1)(:\d+)?$#', $origin)) {
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Vary: Origin');
