@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Codoo — Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#fff;--bg-2:#f5f5f7;--ink:#0a0a0a;--ink-2:#1d1d1f;--grey:#6e6e73;--line:#e4e4e7;--dark:#0a0a0c;--on-dark-2:#a1a1aa;--accent:#0a84ff;--wa:#25d366}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink-2);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Bricolage Grotesque",serif;font-weight:600;line-height:1.04;letter-spacing:-.02em;margin:0;color:var(--ink)}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:64px 24px}
+  .center{text-align:center}
+  .brand{display:inline-flex;align-items:center;gap:9px;margin-bottom:30px}
+  .brand .g{width:30px;height:30px;display:block}
+  .brand b{font-family:"Bricolage Grotesque";font-weight:600;font-size:20px;letter-spacing:-.02em}
+  .brand small{font-family:"Hanken Grotesk";font-weight:500;font-size:12px;color:var(--grey)}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+  h2.big{font-size:clamp(30px,4.4vw,48px);margin:14px auto 0;max-width:18ch}
+  .sub{font-size:18px;color:var(--grey);max-width:46ch;margin:16px auto 0}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;text-align:left}
+  .tier{border:1px solid var(--line);border-radius:22px;padding:30px 26px;background:#fff;display:flex;flex-direction:column}
+  .tier.pop{border-color:transparent;background:var(--dark);color:#fff;box-shadow:0 30px 70px -28px rgba(0,0,0,.5);transform:translateY(-6px)}
+  .tier.pop h3,.tier.pop .price b{color:#fff}
+  .badge{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#063;background:var(--wa);padding:4px 11px;border-radius:100px;margin-bottom:14px}
+  .tier h3{font-size:21px}
+  .tier .cap{font-size:13.5px;color:var(--grey);margin-top:3px}
+  .tier.pop .cap{color:var(--on-dark-2)}
+  .price{margin:18px 0 4px;display:flex;align-items:baseline;gap:6px}
+  .price b{font-family:"Bricolage Grotesque";font-weight:700;font-size:42px;letter-spacing:-.03em;color:var(--ink)}
+  .price span{font-size:14px;color:var(--grey)}
+  .tier.pop .price span{color:var(--on-dark-2)}
+  .feats{list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px;flex:1}
+  .tier.pop .feats{border-color:#26262b}
+  .feats li{display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
+  .feats li svg{width:17px;height:17px;flex:0 0 auto;color:var(--wa);margin-top:1px}
+  .tier.pop .feats li{color:#eaeaec}
+  .btn{margin-top:22px;display:block;text-align:center;padding:13px;border-radius:100px;font-weight:600;font-size:15px;text-decoration:none}
+  .btn-d{background:var(--ink);color:#fff} .tier.pop .btn-d{background:var(--wa);color:#063}
+  .big-cap{margin-top:22px;text-align:center;font-size:15px;color:var(--grey)}
+  .big-cap a{color:var(--accent);font-weight:600;text-decoration:none}
+  .note{margin-top:20px;text-align:center;font-size:14px;color:var(--grey);max-width:62ch;margin-inline:auto}
+  .note b{color:var(--ink-2)}
+
+  /* comparison */
+  .cmp-sect{margin-top:30px;padding-top:60px;border-top:1px solid var(--line)}
+  .tbl-x{overflow-x:auto}
+  table.cmp{width:100%;border-collapse:separate;border-spacing:0;margin-top:34px;font-size:13.5px;min-width:720px}
+  table.cmp th,table.cmp td{padding:13px 15px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  table.cmp thead th{font-family:"Bricolage Grotesque";font-weight:600;font-size:14px;color:var(--ink);background:var(--bg-2)}
+  table.cmp .feat{color:var(--grey);font-weight:600;font-size:12.5px;width:20%}
+  table.cmp td.codoo,table.cmp th.codoo{background:#0a0a0c;color:#fff}
+  table.cmp th.codoo{font-size:15px}
+  table.cmp td.codoo{color:#eaeaec}
+  table.cmp thead th:first-child{border-top-left-radius:12px}
+  table.cmp thead th.codoo{border-top-left-radius:12px;border-top-right-radius:12px}
+  table.cmp tbody tr:last-child td{border-bottom:none}
+  table.cmp tbody tr:last-child td.codoo{border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+  .yes{color:var(--wa);font-weight:700}
+  td.codoo .yes{color:#5de89a}
+  .muted{color:var(--grey)} td.codoo .muted{color:var(--on-dark-2)}
+  .fn{font-size:12px;color:var(--grey);margin-top:16px;max-width:70ch}
+  @media(max-width:820px){.grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}.tier.pop{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap center">
+  <div class="brand"><span class="g"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cg" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#0a84ff"/><stop offset="1" stop-color="#25d366"/></linearGradient></defs><rect width="32" height="32" rx="8.5" fill="url(#cg)"/><path d="M20.6 10.4 A7 7 0 1 0 20.6 21.6" stroke="#fff" stroke-width="3.1" stroke-linecap="round"/><path d="M23 8 L23.95 10.45 L26.4 11.4 L23.95 12.35 L23 14.8 L22.05 12.35 L19.6 11.4 L22.05 10.45 Z" fill="#fff"/></svg></span><b>Codoo</b><small>by KittyKat</small></div>
+  <div class="eyebrow">Pricing</div>
+  <h2 class="big">Simple, per operation. Set up free.</h2>
+  <p class="sub">One flat price for your whole operation — not per-seat, no surprises. We set it up and run it for you.</p>
+
+  <div class="grid">
+    <div class="tier">
+      <h3>Starter</h3><div class="cap">For smaller operators</div>
+      <div class="price"><b>€75</b><span>/ month</span></div><div class="cap">up to 10 apartments</div>
+      <ul class="feats">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>AI guest answers on WhatsApp, any language</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Self check-in, Wi-Fi, parking, per-apartment data</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Escalation &amp; handoff to your Telegram</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Your own number, your data</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Free setup &amp; onboarding</li>
+      </ul>
+      <a class="btn btn-d" href="https://wa.me/37257047525?text=Hi%2C%20I%27d%20like%20Codoo%20for%20my%20apartments" target="_blank" rel="noopener">Get started</a>
+    </div>
+    <div class="tier pop">
+      <span class="badge">Most popular</span>
+      <h3>Growth</h3><div class="cap">For growing portfolios</div>
+      <div class="price"><b>€149</b><span>/ month</span></div><div class="cap">up to 25 apartments</div>
+      <ul class="feats">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Everything in Starter</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Pre-sales replies + booking links</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Post-checkout review nudge</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Proactive welcome &amp; check-in messages</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Priority support</li>
+      </ul>
+      <a class="btn btn-d" href="https://wa.me/37257047525?text=Hi%2C%20I%27d%20like%20Codoo%20for%20my%20apartments" target="_blank" rel="noopener">Get started</a>
+    </div>
+    <div class="tier">
+      <h3>Scale</h3><div class="cap">For larger operations</div>
+      <div class="price"><b>€249</b><span>/ month</span></div><div class="cap">up to 50 apartments</div>
+      <ul class="feats">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Everything in Growth</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Custom tone, rules &amp; escalation logic</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Multiple Telegram groups / team</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Onboarding help with your apartment data</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Direct line to the team</li>
+      </ul>
+      <a class="btn btn-d" href="https://wa.me/37257047525?text=Hi%2C%20I%27d%20like%20Codoo%20for%20my%20apartments" target="_blank" rel="noopener">Get started</a>
+    </div>
+  </div>
+
+  <div class="big-cap">More than 50 apartments? <a href="mailto:hello@kittykat.tech?subject=Codoo%20pricing">Let's talk →</a></div>
+  <p class="note"><b>Free setup &amp; onboarding · 3-month minimum.</b> WhatsApp conversation fees charged by Meta are passed through at cost — replies to a guest who messaged first are free. Cancel anytime after the minimum term.</p>
+
+  <!-- COMPARISON -->
+  <div class="cmp-sect">
+    <div class="eyebrow">How Codoo compares</div>
+    <h2 class="big">A managed concierge, not another dashboard.</h2>
+    <p class="sub" style="max-width:52ch">Most tools are software you configure and run yourself. Codoo is a service we run for you — on your own WhatsApp number.</p>
+
+    <div class="tbl-x">
+    <table class="cmp">
+      <thead>
+        <tr>
+          <th class="feat"></th>
+          <th class="codoo">Codoo</th>
+          <th>AI-messaging tools<br><span class="muted" style="font-weight:400">HostBuddy, Runnr, BoringHost…</span></th>
+          <th>All-in-one PMS<br><span class="muted" style="font-weight:400">Hospitable, Guesty, Hostaway</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="feat">What it is</td><td class="codoo">Done-for-you WhatsApp guest concierge</td><td>Self-serve AI inbox you configure</td><td>Full property-management suite</td></tr>
+        <tr><td class="feat">Pricing</td><td class="codoo">Flat €, per operation — from €75/mo</td><td>~€5–16 / listing / month</td><td>~€20–40+ / listing / month</td></tr>
+        <tr><td class="feat">Setup</td><td class="codoo"><span class="yes">We do it — free</span></td><td>You set it up</td><td>You set it up / paid onboarding</td></tr>
+        <tr><td class="feat">WhatsApp</td><td class="codoo"><span class="yes">Native</span>, on your own number</td><td>One channel among many</td><td>Via integration / add-on</td></tr>
+        <tr><td class="feat">Your number &amp; data</td><td class="codoo"><span class="yes">Yours</span> — no reseller in between</td><td>Through their platform</td><td>Through their platform</td></tr>
+        <tr><td class="feat">Languages</td><td class="codoo">50+, auto-detected</td><td>Varies</td><td>Varies</td></tr>
+        <tr><td class="feat">Channels covered</td><td class="codoo">WhatsApp — focused <span class="muted">(by design)</span></td><td>WhatsApp + SMS / email / Airbnb / Booking</td><td>All channels + calendar, cleaning, tasks</td></tr>
+        <tr><td class="feat">Human handoff</td><td class="codoo">Telegram, instant; you reply, it steps aside</td><td>In-app inbox</td><td>In-app inbox</td></tr>
+        <tr><td class="feat">Best for</td><td class="codoo">Operators who want it handled, WhatsApp-first</td><td>Hands-on hosts who'll run a tool</td><td>Bigger portfolios needing full ops</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="fn">Competitor figures are indicative, based on publicly listed pricing where available (Dec 2025–Jun 2026); plans and inclusions change. Comparison reflects positioning, not a feature-by-feature audit.</p>
+  </div>
+</div>
+</body>
+</html>
