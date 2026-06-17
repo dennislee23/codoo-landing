@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Codoo — every channel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#0a0a0a; --grey:#6e6e73; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:"Hanken Grotesk",-apple-system,system-ui,sans-serif; background:#fff; color:var(--ink);
+        min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 20px; }
+  h1{ font-family:"Bricolage Grotesque",sans-serif; font-weight:600; font-size:clamp(28px,4vw,46px); letter-spacing:-.02em; text-align:center; }
+  .sub{ color:var(--grey); font-size:clamp(15px,1.6vw,20px); text-align:center; margin-top:10px; max-width:760px; }
+  .row{ display:flex; gap:36px; margin-top:48px; flex-wrap:wrap; justify-content:center; }
+  .phone{ width:310px; height:600px; background:#0f0f12; border-radius:38px; padding:9px; box-shadow:0 30px 60px -20px rgba(0,0,0,.35); }
+  .screen{ width:100%; height:100%; border-radius:30px; overflow:hidden; display:flex; flex-direction:column; }
+  .hd{ height:74px; flex:0 0 auto; display:flex; flex-direction:column; justify-content:center; padding:0 18px; color:#fff; }
+  .hd .t{ font-weight:700; font-size:17px; line-height:1.1; }
+  .hd .s{ font-size:13px; opacity:.85; margin-top:3px; }
+  .hd.air{ background:#fff; color:#222; border-bottom:1px solid #ebebeb; }
+  .hd.air .t{ font-family:"Bricolage Grotesque"; color:#FF385C; font-size:22px; }
+  .hd.air .s{ color:#717171; opacity:1; }
+  .hd.bk{ background:#003580; } .hd.bk .t{ font-family:"Bricolage Grotesque"; }
+  .hd.wa{ background:#075E54; flex-direction:row; align-items:center; gap:11px; }
+  .hd.wa .av{ width:38px; height:38px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; }
+  .hd.wa .av svg{ width:26px; height:26px; }
+  .chat{ flex:1; padding:18px 14px; display:flex; flex-direction:column; gap:6px; overflow:hidden; }
+  .chat.wa{ background:#ece5dd; } .chat.plain{ background:#fff; }
+  .row-l{ display:flex; flex-direction:column; align-items:flex-start; }
+  .row-r{ display:flex; justify-content:flex-end; }
+  .who{ display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:#8a8a8f; margin:6px 0 3px 2px; }
+  .who svg{ width:18px; height:18px; }
+  .b{ max-width:80%; padding:10px 14px; border-radius:15px; font-size:15px; line-height:1.4;
+      opacity:0; transform:translateY(10px); transition:opacity .35s ease, transform .35s ease; }
+  .b.show{ opacity:1; transform:none; }
+  .b.guest{ border-bottom-right-radius:5px; }
+  .b.bot{ border-bottom-left-radius:5px; }
+  .bk .guest{ background:#e7f0fa; color:#0a2540; } .bk .bot{ background:#f1f1f3; }
+  .air .guest{ background:#ffe4ea; color:#5a1023; } .air .bot{ background:#f2f2f2; }
+  .wa .guest{ background:#dcf8c6; color:#0a2e10; } .wa .bot{ background:#fff; }
+  .typing{ display:inline-flex; gap:4px; padding:13px 15px; border-radius:15px; border-bottom-left-radius:5px; }
+  .bk .typing{ background:#f1f1f3; } .air .typing{ background:#f2f2f2; } .wa .typing{ background:#fff; }
+  .typing i{ width:7px; height:7px; border-radius:50%; background:#b8b8be; display:block; animation:bnc 1.2s infinite; }
+  .typing i:nth-child(2){ animation-delay:.18s; } .typing i:nth-child(3){ animation-delay:.36s; }
+  @keyframes bnc{ 0%,60%,100%{ transform:translateY(0); opacity:.5; } 30%{ transform:translateY(-5px); opacity:1; } }
+  .lang{ margin-top:8px; font-size:12px; font-weight:600; color:#a1a1aa; letter-spacing:.08em; text-transform:uppercase; }
+  .foot{ color:#a1a1aa; font-size:13px; margin-top:36px; }
+</style>
+</head>
+<body>
+  <h1>One Codoo — every channel, every language</h1>
+  <p class="sub">Your guest writes where they already are. Codoo answers from that apartment's data, in their language.</p>
+
+  <div class="row">
+    <div class="phone"><div class="screen">
+      <div class="hd bk"><div class="t">Booking.com</div><div class="s">Kata Sea View 12B · Messages</div></div>
+      <div class="chat plain bk" data-ch="booking" data-start="0"></div>
+    </div></div>
+    <div class="phone"><div class="screen">
+      <div class="hd air"><div class="t">airbnb</div><div class="s">Kata Sea View 12B · Host</div></div>
+      <div class="chat plain air" data-ch="airbnb" data-start="2"></div>
+    </div></div>
+    <div class="phone"><div class="screen">
+      <div class="hd wa"><div class="av"><svg viewBox="0 0 32 32"><defs><linearGradient id="g" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#0a84ff"/><stop offset="1" stop-color="#25d366"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="url(#g)"/><path d="M20.6 10.4 A7 7 0 1 0 20.6 21.6" stroke="#fff" stroke-width="3.1" stroke-linecap="round" fill="none"/><path d="M23 8 L23.95 10.45 L26.4 11.4 L23.95 12.35 L23 14.8 L22.05 12.35 L19.6 11.4 L22.05 10.45 Z" fill="#fff"/></svg></div><div><div class="t">Codoo</div><div class="s">online</div></div></div>
+      <div class="chat wa" data-ch="wa" data-start="1"></div>
+    </div></div>
+  </div>
+  <p class="foot">Works on top of your channel manager (Beds24) · illustration</p>
+
+<script>
+  const GLYPH = '<svg viewBox="0 0 32 32"><defs><linearGradient id="cg2" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#0a84ff"/><stop offset="1" stop-color="#25d366"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="url(#cg2)"/><path d="M20.6 10.4 A7 7 0 1 0 20.6 21.6" stroke="#fff" stroke-width="3.1" stroke-linecap="round" fill="none"/><path d="M23 8 L23.95 10.45 L26.4 11.4 L23.95 12.35 L23 14.8 L22.05 12.35 L19.6 11.4 L22.05 10.45 Z" fill="#fff"/></svg>';
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const LANGS = ["EN","DE","RU","FR"];
+  const EX = {
+    booking: [
+      {g:"How do I check in?", r:"Check-in is from 14:00 — self check-in. The lockbox is by the door, code 4471."},
+      {g:"Wie checke ich ein?", r:"Check-in ab 14:00 — Self-Check-in. Die Schlüsselbox ist an der Tür, Code 4471."},
+      {g:"Как заселиться?", r:"Заселение с 14:00 — самостоятельное. Локбокс у двери, код 4471."},
+      {g:"Comment faire le check-in ?", r:"Check-in dès 14h00 — autonome. La boîte à clés est à la porte, code 4471."},
+    ],
+    airbnb: [
+      {g:"Is there parking?", r:"Yes — free spot #7 behind the building, and the gate remote is in the lockbox."},
+      {g:"Gibt es Parkplätze?", r:"Ja — kostenlos, Platz #7 hinterm Haus; die Fernbedienung fürs Tor ist in der Schlüsselbox."},
+      {g:"Есть парковка?", r:"Да — бесплатное место #7 за домом; пульт от шлагбаума в локбоксе."},
+      {g:"Y a-t-il un parking ?", r:"Oui — place gratuite #7 derrière le bâtiment ; la télécommande du portail est dans la boîte à clés."},
+    ],
+    wa: [
+      {g:"What's the WiFi password?", r:"Network KataSeaView_12B, password phuket2026 — enjoy your stay!"},
+      {g:"Wie lautet das WLAN-Passwort?", r:"Netzwerk KataSeaView_12B, Passwort phuket2026 — schönen Aufenthalt!"},
+      {g:"Какой пароль от WiFi?", r:"Сеть KataSeaView_12B, пароль phuket2026 — приятного отдыха!"},
+      {g:"Quel est le mot de passe WiFi ?", r:"Réseau KataSeaView_12B, mot de passe phuket2026 — bon séjour !"},
+    ],
+  };
+
+  function guestRow(t){ const r=document.createElement('div'); r.className='row-r'; const b=document.createElement('div'); b.className='b guest'; b.textContent=t; r.appendChild(b); return {row:r,b}; }
+  function botLabel(lang){ const w=document.createElement('div'); w.className='who'; w.innerHTML=GLYPH+'<span>Codoo</span>'; const l=document.createElement('span'); l.className='lang'; l.textContent='· '+lang; w.appendChild(l); return w; }
+  function typingRow(){ const r=document.createElement('div'); r.className='row-l'; const t=document.createElement('div'); t.className='typing'; t.innerHTML='<i></i><i></i><i></i>'; r.appendChild(t); return r; }
+  function botRow(t){ const r=document.createElement('div'); r.className='row-l'; const b=document.createElement('div'); b.className='b bot'; b.textContent=t; r.appendChild(b); return {row:r,b}; }
+
+  async function cycle(chat, ex, lang){
+    chat.innerHTML='';
+    const g=guestRow(ex.g); chat.appendChild(g.row); await sleep(60); g.b.classList.add('show');
+    await sleep(1300);
+    chat.appendChild(botLabel(lang));
+    const ty=typingRow(); chat.appendChild(ty); await sleep(1600); ty.remove();
+    const r=botRow(ex.r); chat.appendChild(r.row); await sleep(60); r.b.classList.add('show');
+  }
+  async function run(chat, idx){
+    const list=EX[chat.dataset.ch]; let i=parseInt(chat.dataset.start||"0",10);
+    await sleep(idx*700);
+    while(true){ await cycle(chat, list[i%list.length], LANGS[i%LANGS.length]); i++; await sleep(3800); }
+  }
+  document.querySelectorAll('.chat').forEach((chat,idx)=>run(chat,idx));
+</script>
+</body>
+</html>
