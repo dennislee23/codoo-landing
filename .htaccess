@@ -17,5 +17,5 @@ RedirectMatch 404 /\.git
 # Team panel (proxied to the codoo-bot Worker; Basic Auth enforced by the Worker)
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteRule ^(panel|inbox|arrivals|learn|img)(/.*)?$ app.php [L,QSA]
+  RewriteRule ^(admin|panel|inbox|arrivals|learn|img)(/.*)?$ app.php [L,QSA]
 </IfModule>
