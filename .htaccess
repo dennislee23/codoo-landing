@@ -14,8 +14,11 @@
 </IfModule>
 # Block the .git directory from the web
 RedirectMatch 404 /\.git
-# Team panel (proxied to the codoo-bot Worker; Basic Auth enforced by the Worker)
+# Team panel (proxied to the codoo-bot Worker; Basic Auth enforced by the Worker).
+# app.php is a universal proxy — it forwards the path, the query and the auth
+# header verbatim — so a new panel page needs nothing here except its name in
+# this list. Keep it in step with the sidebar in the Worker's nav.ts.
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteRule ^(admin|panel|inbox|arrivals|learn|waiting|incidents|status|img)(/.*)?$ app.php [L,QSA]
+  RewriteRule ^(admin|panel|inbox|arrivals|apartments|learn|waiting|ask|health|progress|incidents|status|img)(/.*)?$ app.php [L,QSA]
 </IfModule>
