@@ -2,7 +2,9 @@
 // Reverse proxy: serves the Codoo team panel (rendered by the codoo-bot Worker)
 // under codoo.kittykat.tech. Forwards the team's Basic Auth straight to the Worker,
 // which is the auth gate (password = the Worker's WEBHOOK_VERIFY_TOKEN). Paths:
-// /panel /inbox /arrivals /learn (+ /learn/act, POST /learn/add) /img/<id>, /arrivals/checkin.
+// /panel /inbox /arrivals /learn (+ /learn/act, POST /learn/add, /learn/edit,
+// /learn/reject-note) /img/<id>, /arrivals/checkin. The rewrite passes any
+// sub-path through, so a new Worker route needs nothing here.
 declare(strict_types=1);
 $WORKER = 'https://codoo-bot.hello-071.workers.dev';
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
